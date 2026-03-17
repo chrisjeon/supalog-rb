@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Supalog::Rb do
+RSpec.describe Supalog do
   it "has a version number" do
-    expect(Supalog::Rb::VERSION).not_to be nil
+    expect(Supalog::VERSION).not_to be nil
   end
 
   it "does something useful" do

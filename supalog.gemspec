@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "lib/supalog/rb/version"
+require_relative "lib/supalog/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "supalog-rb"
-  spec.version = Supalog::Rb::VERSION
+  spec.name = "supalog"
+  spec.version = Supalog::VERSION
   spec.authors = ["Chris Jeon"]
   spec.email = ["chris@typefast.co"]
 
