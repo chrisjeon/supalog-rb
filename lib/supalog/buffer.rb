@@ -40,7 +40,7 @@ module Supalog
 
     def stop
       @stopped = true
-      @flush_thread&.kill
+      @flush_thread&.join(5)
       @flush_thread = nil
     end
 

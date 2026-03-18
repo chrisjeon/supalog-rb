@@ -8,7 +8,7 @@ RSpec.describe Supalog::Configuration do
   end
 
   it "has default batch_size" do
-    expect(config.batch_size).to eq(50)
+    expect(config.batch_size).to eq(100)
   end
 
   it "has default flush_interval" do

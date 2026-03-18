@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Supalog is a Ruby gem that ships logs from Rails applications to the Supalog platform (supalog.dev). It provides a drop-in Rails logger that buffers log entries in memory and flushes them in batches to the Supalog ingest API via a background thread.
+Supalog is a Ruby gem that ships logs from Rails applications to the Supalog platform (www.supalog.dev). It provides a drop-in Rails logger that buffers log entries in memory and flushes them in batches to the Supalog ingest API via a background thread.
 
 **Zero dependencies** — uses only `Net::HTTP` from Ruby stdlib.
 
@@ -30,10 +30,11 @@ The gem posts to the Supalog ingest API:
 
 ## Architecture
 
-- **`Supalog::Client`** — core class. Holds config (API key, endpoint URL), manages the buffer and background flush thread.
+- **`Supalog`** — top-level module. Holds configuration, manages the buffer and background flush thread via singleton methods.
 - **`Supalog::Buffer`** — thread-safe in-memory array. Accepts log entries, returns and clears batch on flush.
-- **`Supalog::Logger`** — extends or wraps `ActiveSupport::Logger`. Intercepts log calls, writes to the buffer, and optionally passes through to the original logger.
-- **`Supalog::Railtie`** — auto-configures in Rails apps. Reads `config.supalog.api_key` and `config.supalog.url`, wires up the logger.
+- **`Supalog::LogSubscriber`** — wraps `Rails.logger#add` to intercept log calls, writes to the buffer, and passes through to the original logger.
+- **`Supalog::Transport`** — delivers batches to the Supalog ingest API via `Net::HTTP`.
+- **`Supalog::Railtie`** — auto-configures in Rails apps. Wires up the logger when `api_key` is present.
 
 ## Expected Usage
 
@@ -41,7 +42,7 @@ The gem posts to the Supalog ingest API:
 # config/initializers/supalog.rb
 Supalog.configure do |config|
   config.api_key = ENV["SUPALOG_API_KEY"]
-  config.url = "https://supalog.dev"       # optional, this is the default
+  config.url = "https://www.supalog.dev"       # optional, this is the default
   config.flush_interval = 5                 # seconds, optional, default 5
   config.batch_size = 100                   # optional, default 100
 end
