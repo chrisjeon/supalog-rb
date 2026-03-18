@@ -4,6 +4,7 @@ require_relative "supalog/version"
 require_relative "supalog/configuration"
 require_relative "supalog/buffer"
 require_relative "supalog/transport"
+require_relative "supalog/log_subscriber"
 
 module Supalog
   class Error < StandardError; end
@@ -16,6 +17,10 @@ module Supalog
     def configure
       yield(configuration)
       start!
+
+      if defined?(Rails) && Rails.respond_to?(:logger) && Rails.logger
+        attach_logger!(Rails.logger)
+      end
     end
 
     def enabled?
@@ -33,6 +38,13 @@ module Supalog
 
       at_exit { shutdown }
       @started = true
+    end
+
+    def attach_logger!(logger)
+      return if @logger_attached
+
+      LogSubscriber.attach_logger!(logger)
+      @logger_attached = true
     end
 
     def buffer
@@ -56,6 +68,7 @@ module Supalog
       @configuration = Configuration.new
       @buffer = nil
       @started = false
+      @logger_attached = false
     end
   end
 end
