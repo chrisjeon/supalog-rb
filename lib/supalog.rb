@@ -18,8 +18,13 @@ module Supalog
       start!
     end
 
+    def enabled?
+      configuration.enabled
+    end
+
     def start!
       return if @started
+      return unless enabled?
 
       @buffer = Buffer.new(
         batch_size: configuration.batch_size,
@@ -35,6 +40,8 @@ module Supalog
     end
 
     def push(entry)
+      return unless enabled?
+
       @buffer&.push(entry)
     end
 

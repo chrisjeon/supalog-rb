@@ -50,6 +50,7 @@ That's it. Your Rails logs now flow to Supalog automatically — no other code c
 | `url`            | `"https://www.supalog.dev"`  | Supalog ingest endpoint.                             |
 | `flush_interval` | `5`                          | Seconds between background flushes.                  |
 | `batch_size`     | `100`                        | Max entries buffered before an immediate flush.       |
+| `enabled`        | `true`                       | Enable or disable log shipping.                      |
 
 ```ruby
 Supalog.configure do |config|
@@ -57,8 +58,22 @@ Supalog.configure do |config|
   config.url            = "https://www.supalog.dev"  # default
   config.flush_interval = 5                          # seconds, default
   config.batch_size     = 100                        # default
+  config.enabled        = true                         # default
 end
 ```
+
+### Per-Environment Usage
+
+Use `enabled` to control which environments ship logs:
+
+```ruby
+Supalog.configure do |config|
+  config.api_key = ENV["SUPALOG_API_KEY"]
+  config.enabled = Rails.env.production? || Rails.env.staging?
+end
+```
+
+When `enabled` is `false`, no background thread is started and log entries are silently discarded.
 
 ## How It Works
 
