@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative "supalog/version"
-require_relative "supalog/configuration"
-require_relative "supalog/buffer"
-require_relative "supalog/transport"
-require_relative "supalog/log_subscriber"
+require_relative "logcast/version"
+require_relative "logcast/configuration"
+require_relative "logcast/buffer"
+require_relative "logcast/transport"
+require_relative "logcast/log_subscriber"
 
-module Supalog
+module Logcast
   class Error < StandardError; end
 
   class << self
@@ -73,4 +73,4 @@ module Supalog
   end
 end
 
-require_relative "supalog/railtie" if defined?(Rails::Railtie)
+require_relative "logcast/railtie" if defined?(Rails::Railtie)

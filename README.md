@@ -1,18 +1,18 @@
-# Supalog
+# Logcast
 
-[![Gem Version](https://badge.fury.io/rb/supalog.svg)](https://rubygems.org/gems/supalog)
+[![Gem Version](https://badge.fury.io/rb/logcast.svg)](https://rubygems.org/gems/logcast)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Ship your Rails logs to [Supalog](https://www.supalog.dev) with zero external dependencies.
+Ship your Rails logs to [Logcast](https://www.logcast.dev) with zero external dependencies.
 
-Supalog is a drop-in Rails logger that buffers log entries in memory and flushes them in batches to the Supalog ingest API via a background thread. Your existing Rails logging continues to work as normal — Supalog simply taps into it.
+Logcast is a drop-in Rails logger that buffers log entries in memory and flushes them in batches to the Logcast ingest API via a background thread. Your existing Rails logging continues to work as normal — Logcast simply taps into it.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "supalog"
+gem "logcast"
 ```
 
 Then execute:
@@ -24,38 +24,38 @@ bundle install
 Or install it yourself:
 
 ```bash
-gem install supalog
+gem install logcast
 ```
 
 ## Quick Start
 
-1. Get your API key from [supalog.dev](https://www.supalog.dev)
+1. Get your API key from [logcast.dev](https://www.logcast.dev)
 
 2. Create an initializer:
 
 ```ruby
-# config/initializers/supalog.rb
-Supalog.configure do |config|
-  config.api_key = ENV["SUPALOG_API_KEY"]
+# config/initializers/logcast.rb
+Logcast.configure do |config|
+  config.api_key = ENV["LOGCAST_API_KEY"]
 end
 ```
 
-That's it. Your Rails logs now flow to Supalog automatically — no other code changes needed.
+That's it. Your Rails logs now flow to Logcast automatically — no other code changes needed.
 
 ## Configuration
 
 | Option           | Default                      | Description                                          |
 |------------------|------------------------------|------------------------------------------------------|
-| `api_key`        | `nil`                        | **Required.** Your Supalog project API key.          |
-| `url`            | `"https://www.supalog.dev"`  | Supalog ingest endpoint.                             |
+| `api_key`        | `nil`                        | **Required.** Your Logcast project API key.          |
+| `url`            | `"https://www.logcast.dev"`  | Logcast ingest endpoint.                             |
 | `flush_interval` | `5`                          | Seconds between background flushes.                  |
 | `batch_size`     | `100`                        | Max entries buffered before an immediate flush.       |
 | `enabled`        | `true`                       | Enable or disable log shipping.                      |
 
 ```ruby
-Supalog.configure do |config|
-  config.api_key        = ENV["SUPALOG_API_KEY"]
-  config.url            = "https://www.supalog.dev"  # default
+Logcast.configure do |config|
+  config.api_key        = ENV["LOGCAST_API_KEY"]
+  config.url            = "https://www.logcast.dev"  # default
   config.flush_interval = 5                          # seconds, default
   config.batch_size     = 100                        # default
   config.enabled        = true                         # default
@@ -67,8 +67,8 @@ end
 Use `enabled` to control which environments ship logs:
 
 ```ruby
-Supalog.configure do |config|
-  config.api_key = ENV["SUPALOG_API_KEY"]
+Logcast.configure do |config|
+  config.api_key = ENV["LOGCAST_API_KEY"]
   config.enabled = Rails.env.production? || Rails.env.staging?
 end
 ```
@@ -79,11 +79,11 @@ When `enabled` is `false`, no background thread is started and log entries are s
 
 1. **Intercepts** — Wraps `Rails.logger` to capture every log call.
 2. **Buffers** — Stores entries in a thread-safe in-memory array.
-3. **Flushes** — A background thread sends batches to the Supalog API every `flush_interval` seconds, or immediately when `batch_size` is reached.
+3. **Flushes** — A background thread sends batches to the Logcast API every `flush_interval` seconds, or immediately when `batch_size` is reached.
 4. **Passes through** — All logs still go to the original Rails logger, so your existing output (console, file, etc.) is unaffected.
 5. **Shuts down gracefully** — Remaining buffered logs are flushed on process exit via `at_exit`.
 
-Supalog never raises exceptions that could crash your application. Transport errors are silently logged to `STDERR`.
+Logcast never raises exceptions that could crash your application. Transport errors are silently logged to `STDERR`.
 
 ## Requirements
 
@@ -106,7 +106,7 @@ bundle exec rake install
 
 ## Contributing
 
-Bug reports and pull requests are welcome on [GitHub](https://github.com/chrisjeon/supalog-rb).
+Bug reports and pull requests are welcome on [GitHub](https://github.com/chrisjeon/logcast-rb).
 
 ## License
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Supalog
+module Logcast
   class Buffer
     def initialize(batch_size:, flush_interval:, &on_flush)
       @batch_size = batch_size
@@ -35,7 +35,7 @@ module Supalog
 
       @on_flush.call(batch) if batch
     rescue => e
-      $stderr.puts "[Supalog] Flush error: #{e.message}"
+      $stderr.puts "[Logcast] Flush error: #{e.message}"
     end
 
     def stop

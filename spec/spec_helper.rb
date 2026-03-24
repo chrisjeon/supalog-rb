@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "supalog"
+require "logcast"
 
 RSpec.configure do |config|
   config.example_status_persistence_file_path = ".rspec_status"
@@ -11,6 +11,6 @@ RSpec.configure do |config|
   end
 
   config.after(:each) do
-    Supalog.reset!
+    Logcast.reset!
   end
 end

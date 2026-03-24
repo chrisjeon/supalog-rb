@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Supalog
+module Logcast
   class LogSubscriber
     SEVERITY_MAP = {
       0 => "debug",
@@ -33,7 +33,7 @@ module Supalog
         end
 
         if message
-          Supalog.push({
+          Logcast.push({
             "level" => SEVERITY_MAP[severity] || "unknown",
             "message" => message.to_s.gsub(/\e\[[0-9;]*m/, ""),
             "metadata" => {},
@@ -86,7 +86,7 @@ module Supalog
           msg = message || (block ? block.call : progname)
 
           if msg
-            Supalog.push({
+            Logcast.push({
               "level" => severity_map[severity] || "unknown",
               "message" => msg.to_s,
               "metadata" => {},

@@ -2,9 +2,9 @@
 
 require "webrick"
 
-RSpec.describe Supalog::Transport do
+RSpec.describe Logcast::Transport do
   let(:config) do
-    Supalog::Configuration.new.tap do |c|
+    Logcast::Configuration.new.tap do |c|
       c.api_key = "test-api-key"
       c.url = "http://127.0.0.1:#{port}"
     end

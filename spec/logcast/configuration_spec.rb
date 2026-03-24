@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe Supalog::Configuration do
+RSpec.describe Logcast::Configuration do
   subject(:config) { described_class.new }
 
   it "has default url" do
-    expect(config.url).to eq("https://www.supalog.dev")
+    expect(config.url).to eq("https://www.logcast.dev")
   end
 
   it "has default batch_size" do

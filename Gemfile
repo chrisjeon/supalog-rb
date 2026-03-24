@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in supalog.gemspec
+# Specify your gem's dependencies in logcast.gemspec
 gemspec
 
 gem "irb"

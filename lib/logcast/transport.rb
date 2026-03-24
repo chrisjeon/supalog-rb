@@ -4,7 +4,7 @@ require "net/http"
 require "uri"
 require "json"
 
-module Supalog
+module Logcast
   class Transport
     CONNECT_TIMEOUT = 5
     READ_TIMEOUT = 10
@@ -25,10 +25,10 @@ module Supalog
       response = http.request(request)
 
       unless response.is_a?(Net::HTTPSuccess)
-        $stderr.puts "[Supalog] Ingest API responded with #{response.code}: #{response.body}"
+        $stderr.puts "[Logcast] Ingest API responded with #{response.code}: #{response.body}"
       end
     rescue => e
-      $stderr.puts "[Supalog] Transport error: #{e.message}"
+      $stderr.puts "[Logcast] Transport error: #{e.message}"
     end
   end
 end

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-module Supalog
+module Logcast
   VERSION = "0.1.3"
 end
