@@ -3,7 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/logcast.svg)](https://rubygems.org/gems/logcast)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Ship your Rails logs to [Logcast](https://www.logcast.dev) with zero external dependencies.
+Ship your Rails logs to [Logcast](https://www.logcast.sh) with zero external dependencies.
 
 Logcast is a drop-in Rails logger that buffers log entries in memory and flushes them in batches to the Logcast ingest API via a background thread. Your existing Rails logging continues to work as normal — Logcast simply taps into it.
 
@@ -29,7 +29,7 @@ gem install logcast
 
 ## Quick Start
 
-1. Get your API key from [logcast.dev](https://www.logcast.dev)
+1. Get your API key from [logcast.dev](https://www.logcast.sh)
 
 2. Create an initializer:
 
@@ -47,7 +47,7 @@ That's it. Your Rails logs now flow to Logcast automatically — no other code c
 | Option           | Default                      | Description                                          |
 |------------------|------------------------------|------------------------------------------------------|
 | `api_key`        | `nil`                        | **Required.** Your Logcast project API key.          |
-| `url`            | `"https://www.logcast.dev"`  | Logcast ingest endpoint.                             |
+| `url`            | `"https://www.logcast.sh"`  | Logcast ingest endpoint.                             |
 | `flush_interval` | `5`                          | Seconds between background flushes.                  |
 | `batch_size`     | `100`                        | Max entries buffered before an immediate flush.       |
 | `enabled`        | `true`                       | Enable or disable log shipping.                      |
@@ -55,7 +55,7 @@ That's it. Your Rails logs now flow to Logcast automatically — no other code c
 ```ruby
 Logcast.configure do |config|
   config.api_key        = ENV["LOGCAST_API_KEY"]
-  config.url            = "https://www.logcast.dev"  # default
+  config.url            = "https://www.logcast.sh"  # default
   config.flush_interval = 5                          # seconds, default
   config.batch_size     = 100                        # default
   config.enabled        = true                         # default

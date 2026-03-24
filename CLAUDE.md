@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Logcast is a Ruby gem that ships logs from Rails applications to the Logcast platform (www.logcast.dev). It provides a drop-in Rails logger that buffers log entries in memory and flushes them in batches to the Logcast ingest API via a background thread.
+Logcast is a Ruby gem that ships logs from Rails applications to the Logcast platform (www.logcast.sh). It provides a drop-in Rails logger that buffers log entries in memory and flushes them in batches to the Logcast ingest API via a background thread.
 
 **Zero dependencies** — uses only `Net::HTTP` from Ruby stdlib.
 
@@ -42,7 +42,7 @@ The gem posts to the Logcast ingest API:
 # config/initializers/logcast.rb
 Logcast.configure do |config|
   config.api_key = ENV["LOGCAST_API_KEY"]
-  config.url = "https://www.logcast.dev"       # optional, this is the default
+  config.url = "https://www.logcast.sh"       # optional, this is the default
   config.flush_interval = 5                 # seconds, optional, default 5
   config.batch_size = 100                   # optional, default 100
 end

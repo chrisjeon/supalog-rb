@@ -4,7 +4,7 @@ RSpec.describe Logcast::Configuration do
   subject(:config) { described_class.new }
 
   it "has default url" do
-    expect(config.url).to eq("https://www.logcast.dev")
+    expect(config.url).to eq("https://www.logcast.sh")
   end
 
   it "has default batch_size" do

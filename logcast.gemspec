@@ -3,14 +3,14 @@
 require_relative "lib/logcast/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "logcast"
+  spec.name = "logcast-sh"
   spec.version = Logcast::VERSION
   spec.authors = ["Chris Jeon"]
   spec.email = ["chris@typefast.co"]
 
   spec.summary = "Ship Rails logs to the Logcast platform"
   spec.description = "A drop-in Rails logger that buffers log entries and flushes them in batches to the Logcast ingest API via a background thread."
-  spec.homepage = "https://logcast.dev"
+  spec.homepage = "https://www.logcast.sh"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.0.0"
 

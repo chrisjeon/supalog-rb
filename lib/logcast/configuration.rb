@@ -6,7 +6,7 @@ module Logcast
 
     def initialize
       @api_key = nil
-      @url = "https://www.logcast.dev"
+      @url = "https://www.logcast.sh"
       @batch_size = 100
       @flush_interval = 5
       @enabled = true
