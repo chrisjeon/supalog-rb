@@ -29,7 +29,7 @@ gem install logcast
 
 ## Quick Start
 
-1. Get your API key from [logcast.dev](https://www.logcast.sh)
+1. Get your API key from [logcast.sh](https://www.logcast.sh)
 
 2. Create an initializer:
 
