@@ -37,6 +37,7 @@ gem install logcast
 # config/initializers/logcast.rb
 Logcast.configure do |config|
   config.api_key = ENV["LOGCAST_API_KEY"]
+  config.enabled = Rails.env.production?
 end
 ```
 
@@ -55,7 +56,6 @@ That's it. Your Rails logs now flow to Logcast automatically — no other code c
 ```ruby
 Logcast.configure do |config|
   config.api_key        = ENV["LOGCAST_API_KEY"]
-  config.url            = "https://www.logcast.sh"  # default
   config.flush_interval = 5                          # seconds, default
   config.batch_size     = 100                        # default
   config.enabled        = true                         # default
