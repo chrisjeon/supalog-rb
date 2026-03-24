@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "logcast"
+require "logcast_sh"
 
 RSpec.configure do |config|
   config.example_status_persistence_file_path = ".rspec_status"
@@ -11,6 +11,6 @@ RSpec.configure do |config|
   end
 
   config.after(:each) do
-    Logcast.reset!
+    LogcastSh.reset!
   end
 end

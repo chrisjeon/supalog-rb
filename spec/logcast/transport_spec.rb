@@ -2,9 +2,9 @@
 
 require "webrick"
 
-RSpec.describe Logcast::Transport do
+RSpec.describe LogcastSh::Transport do
   let(:config) do
-    Logcast::Configuration.new.tap do |c|
+    LogcastSh::Configuration.new.tap do |c|
       c.api_key = "test-api-key"
       c.url = "http://127.0.0.1:#{port}"
     end

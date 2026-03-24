@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "lib/logcast/version"
+require_relative "lib/logcast_sh/version"
 
 Gem::Specification.new do |spec|
   spec.name = "logcast-sh"
-  spec.version = Logcast::VERSION
+  spec.version = LogcastSh::VERSION
   spec.authors = ["Chris Jeon"]
   spec.email = ["chris@typefast.co"]
 

@@ -4,7 +4,7 @@ require "net/http"
 require "uri"
 require "json"
 
-module Logcast
+module LogcastSh
   class Transport
     CONNECT_TIMEOUT = 5
     READ_TIMEOUT = 10
@@ -25,10 +25,10 @@ module Logcast
       response = http.request(request)
 
       unless response.is_a?(Net::HTTPSuccess)
-        $stderr.puts "[Logcast] Ingest API responded with #{response.code}: #{response.body}"
+        $stderr.puts "[LogcastSh] Ingest API responded with #{response.code}: #{response.body}"
       end
     rescue => e
-      $stderr.puts "[Logcast] Transport error: #{e.message}"
+      $stderr.puts "[LogcastSh] Transport error: #{e.message}"
     end
   end
 end

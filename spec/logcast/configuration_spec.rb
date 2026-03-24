@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Logcast::Configuration do
+RSpec.describe LogcastSh::Configuration do
   subject(:config) { described_class.new }
 
   it "has default url" do

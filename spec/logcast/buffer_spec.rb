@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Logcast::Buffer do
+RSpec.describe LogcastSh::Buffer do
   let(:flushed_batches) { [] }
   let(:buffer) do
     described_class.new(batch_size: 3, flush_interval: 60) do |batch|

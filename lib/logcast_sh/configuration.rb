@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Logcast
+module LogcastSh
   class Configuration
     attr_accessor :api_key, :url, :batch_size, :flush_interval, :enabled
 

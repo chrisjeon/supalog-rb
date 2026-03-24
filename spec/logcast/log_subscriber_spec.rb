@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "../../lib/logcast/log_subscriber"
+require_relative "../../lib/logcast_sh/log_subscriber"
 
-RSpec.describe Logcast::LogSubscriber do
+RSpec.describe LogcastSh::LogSubscriber do
   before do
-    Logcast.configure do |config|
+    LogcastSh.configure do |config|
       config.api_key = "test-key"
     end
   end
@@ -49,37 +49,37 @@ RSpec.describe Logcast::LogSubscriber do
   describe "with standard Logger (older Rails)" do
     let(:logger) { build_standard_logger }
 
-    before { Logcast::LogSubscriber.attach_logger!(logger) }
+    before { LogcastSh::LogSubscriber.attach_logger!(logger) }
 
     it "captures info messages" do
       logger.info("hello info")
-      expect(Logcast.buffer.size).to eq(1)
+      expect(LogcastSh.buffer.size).to eq(1)
     end
 
     it "captures debug messages" do
       logger.debug("hello debug")
-      expect(Logcast.buffer.size).to eq(1)
+      expect(LogcastSh.buffer.size).to eq(1)
     end
 
     it "captures warn messages" do
       logger.warn("hello warn")
-      expect(Logcast.buffer.size).to eq(1)
+      expect(LogcastSh.buffer.size).to eq(1)
     end
 
     it "captures error messages" do
       logger.error("hello error")
-      expect(Logcast.buffer.size).to eq(1)
+      expect(LogcastSh.buffer.size).to eq(1)
     end
 
     it "captures block messages" do
       logger.info { "block message" }
-      expect(Logcast.buffer.size).to eq(1)
+      expect(LogcastSh.buffer.size).to eq(1)
     end
 
     it "sets the correct severity level" do
-      allow(Logcast).to receive(:push).and_call_original
+      allow(LogcastSh).to receive(:push).and_call_original
       logger.warn("a warning")
-      expect(Logcast).to have_received(:push).with(hash_including("level" => "warn"))
+      expect(LogcastSh).to have_received(:push).with(hash_including("level" => "warn"))
     end
   end
 
@@ -87,37 +87,37 @@ RSpec.describe Logcast::LogSubscriber do
     let(:sub_logger) { build_standard_logger }
     let(:broadcast_logger) { build_broadcast_logger(sub_logger) }
 
-    before { Logcast::LogSubscriber.attach_logger!(broadcast_logger) }
+    before { LogcastSh::LogSubscriber.attach_logger!(broadcast_logger) }
 
     it "captures info messages" do
       broadcast_logger.info("broadcast info")
-      expect(Logcast.buffer.size).to eq(1)
+      expect(LogcastSh.buffer.size).to eq(1)
     end
 
     it "captures debug messages" do
       broadcast_logger.debug("broadcast debug")
-      expect(Logcast.buffer.size).to eq(1)
+      expect(LogcastSh.buffer.size).to eq(1)
     end
 
     it "captures warn messages" do
       broadcast_logger.warn("broadcast warn")
-      expect(Logcast.buffer.size).to eq(1)
+      expect(LogcastSh.buffer.size).to eq(1)
     end
 
     it "captures error messages" do
       broadcast_logger.error("broadcast error")
-      expect(Logcast.buffer.size).to eq(1)
+      expect(LogcastSh.buffer.size).to eq(1)
     end
 
     it "captures block messages" do
       broadcast_logger.info { "broadcast block" }
-      expect(Logcast.buffer.size).to eq(1)
+      expect(LogcastSh.buffer.size).to eq(1)
     end
 
     it "sets the correct severity level" do
-      allow(Logcast).to receive(:push).and_call_original
+      allow(LogcastSh).to receive(:push).and_call_original
       broadcast_logger.error("an error")
-      expect(Logcast).to have_received(:push).with(hash_including("level" => "error"))
+      expect(LogcastSh).to have_received(:push).with(hash_including("level" => "error"))
     end
   end
 end

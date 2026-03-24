@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative "logcast/version"
-require_relative "logcast/configuration"
-require_relative "logcast/buffer"
-require_relative "logcast/transport"
-require_relative "logcast/log_subscriber"
+require_relative "logcast_sh/version"
+require_relative "logcast_sh/configuration"
+require_relative "logcast_sh/buffer"
+require_relative "logcast_sh/transport"
+require_relative "logcast_sh/log_subscriber"
 
-module Logcast
+module LogcastSh
   class Error < StandardError; end
 
   class << self
@@ -73,4 +73,4 @@ module Logcast
   end
 end
 
-require_relative "logcast/railtie" if defined?(Rails::Railtie)
+require_relative "logcast_sh/railtie" if defined?(Rails::Railtie)
